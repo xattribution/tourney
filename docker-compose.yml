@@ -5,9 +5,9 @@ services:
     container_name: tourney
     restart: unless-stopped
     ports:
+      # To serve on a different port, change ONLY the left (host) number,
+      # e.g. "8787:8080". The right number is the app's fixed internal port.
       - "8080:8080"
-    environment:
-      - PORT=8080
     volumes:
       - tourney-data:/data
 
