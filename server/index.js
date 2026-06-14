@@ -60,7 +60,10 @@ if (existsSync(CLIENT_DIR)) {
   });
 }
 
-app.listen(PORT, () => {
+// Bind explicitly to IPv4 0.0.0.0 so Docker's port forwarding (which targets the
+// container's IPv4 address) reaches us. Listening on the default `::` can leave
+// IPv4 connections reset on some container network stacks.
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`tourney listening on http://0.0.0.0:${PORT}`);
   console.log(`  data dir:   ${DATA_DIR}`);
   console.log(`  client dir: ${CLIENT_DIR}${existsSync(CLIENT_DIR) ? '' : ' (not built — API only)'}`);
