@@ -4,8 +4,10 @@
 FROM node:22-slim AS client-build
 WORKDIR /app/client
 COPY client/package*.json ./
-# Icons are pre-generated and committed, so skip the optional `sharp` toolchain.
-RUN npm ci --omit=optional --no-audit --no-fund
+# Install all deps, including platform-specific optional native binaries that
+# Rollup (used by Vite) needs to build. `sharp` is optional and only used for
+# icon regeneration; it lands in this throwaway build stage, not the runtime.
+RUN npm ci --no-audit --no-fund
 COPY client/ ./
 RUN npm run build
 
