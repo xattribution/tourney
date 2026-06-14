@@ -1,0 +1,11 @@
+**/node_modules
+**/dist
+**/data
+**/*.db
+**/*.db-*
+.git
+.gitignore
+*.md
+world-cup-2026.html
+npm-debug.log*
+.DS_Store

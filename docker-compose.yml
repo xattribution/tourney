@@ -1,0 +1,15 @@
+services:
+  tourney:
+    build: .
+    image: tourney:latest
+    container_name: tourney
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+    volumes:
+      - tourney-data:/data
+
+volumes:
+  tourney-data:
